@@ -1,0 +1,57 @@
+[gd_scene load_steps=3 format=3 uid="uid://me04ghyu01ql"]
+
+[ext_resource type="Script" path="res://scenes/hud.gd" id="1_8nic2"]
+[ext_resource type="FontFile" uid="uid://csa321l6atcac" path="res://fonts/Xolonium-Regular.ttf" id="1_ptntq"]
+
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource("1_8nic2")
+
+[node name="Title" type="Label" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -181.0
+offset_right = 181.0
+offset_bottom = 78.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("1_ptntq")
+theme_override_font_sizes/font_size = 64
+text = "Sturmwind"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="StartButton" type="Button" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -74.0
+offset_top = -24.0
+offset_right = 74.0
+offset_bottom = 24.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("1_ptntq")
+theme_override_font_sizes/font_size = 64
+text = "Start"
+
+[node name="ExitButton" type="Button" parent="."]
+anchors_preset = -1
+anchor_left = 0.498
+anchor_top = 0.704
+anchor_right = 0.498
+anchor_bottom = 0.704
+offset_left = -68.696
+offset_top = -43.192
+offset_right = 69.304
+offset_bottom = 42.808
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("1_ptntq")
+theme_override_font_sizes/font_size = 64
+text = "Exit
+"
+
+[connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="ExitButton" to="." method="_on_exit_button_pressed"]

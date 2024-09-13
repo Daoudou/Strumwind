@@ -1,0 +1,41 @@
+[gd_scene load_steps=5 format=3 uid="uid://b7atkj00cnh0s"]
+
+[ext_resource type="PackedScene" uid="uid://oms48v6haxa5" path="res://scenes/list/control_button_list.tscn" id="1_g2m1x"]
+[ext_resource type="Script" path="res://scenes/levels_select.gd" id="1_sfkh3"]
+[ext_resource type="FontFile" uid="uid://csa321l6atcac" path="res://fonts/Xolonium-Regular.ttf" id="2_talwh"]
+[ext_resource type="Texture2D" uid="uid://gsugqbvb1xvg" path="res://art/background_select_levels.png" id="4_sq8ks"]
+
+[node name="LevelsSelect" type="Node"]
+script = ExtResource("1_sfkh3")
+
+[node name="BackgroundSelectLevels" type="Sprite2D" parent="."]
+position = Vector2(585, 327)
+scale = Vector2(0.968333, 0.936599)
+texture = ExtResource("4_sq8ks")
+
+[node name="ControlButtonList" parent="." instance=ExtResource("1_g2m1x")]
+anchors_preset = -1
+anchor_left = 0.499
+anchor_top = 0.216
+anchor_right = 0.499
+anchor_bottom = 0.216
+offset_left = -19.848
+offset_top = -19.968
+offset_right = 20.152
+offset_bottom = 20.032
+grow_horizontal = 2
+
+[node name="Button" type="Button" parent="."]
+offset_left = 459.0
+offset_top = 424.0
+offset_right = 695.0
+offset_bottom = 510.0
+theme_override_fonts/font = ExtResource("2_talwh")
+theme_override_font_sizes/font_size = 64
+text = "Return"
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

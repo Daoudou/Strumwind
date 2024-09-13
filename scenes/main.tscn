@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://eygaje4g3qhj"]
+
+[ext_resource type="PackedScene" uid="uid://me04ghyu01ql" path="res://scenes/hud.tscn" id="1_33p81"]
+[ext_resource type="Texture2D" uid="uid://dx582acirchbt" path="res://art/MainBackground.png" id="2_b1dqj"]
+[ext_resource type="Texture2D" uid="uid://weij17rkuppo" path="res://art/AlienSoldier.png" id="3_qt1hx"]
+[ext_resource type="Texture2D" uid="uid://blgcrpb5htkc3" path="res://art/SpaceSoldier.png" id="4_dqpiy"]
+
+[node name="Main" type="Node"]
+
+[node name="HUD" parent="." instance=ExtResource("1_33p81")]
+
+[node name="Background" type="TextureRect" parent="."]
+offset_left = -3.0
+offset_top = 1.0
+offset_right = 1151.0
+offset_bottom = 745.0
+texture = ExtResource("2_b1dqj")
+
+[node name="AlienSoldier" type="TextureRect" parent="."]
+offset_left = -53.0
+offset_top = 33.0
+offset_right = 1578.0
+offset_bottom = 2477.0
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("3_qt1hx")
+
+[node name="SpaceSoldier" type="TextureRect" parent="."]
+offset_left = 770.0
+offset_top = 88.0
+offset_right = 1411.0
+offset_bottom = 1112.0
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("4_dqpiy")

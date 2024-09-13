@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://oms48v6haxa5"]
+
+[ext_resource type="Script" path="res://scenes/list/control_button_list.gd" id="1_4ge3g"]
+
+[node name="ControlButtonList" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_4ge3g")
+button_count = null
+
+[node name="VBoxContainerButton" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0

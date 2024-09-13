@@ -1,0 +1,35 @@
+[gd_scene load_steps=7 format=3 uid="uid://cuphg6ua5agb3"]
+
+[ext_resource type="PackedScene" uid="uid://d042qadhulha7" path="res://scenes/global/hud_levels.tscn" id="1_wmlix"]
+[ext_resource type="Script" path="res://levels/level_4.gd" id="1_yb54q"]
+[ext_resource type="Shader" path="res://levels/level_1.gdshader" id="2_hq88l"]
+[ext_resource type="Texture2D" uid="uid://ctwh54cqyd7di" path="res://art/background5.png" id="2_yy0cm"]
+[ext_resource type="PackedScene" uid="uid://dpgvyj08o5pe1" path="res://models/characters/player.tscn" id="4_nwj4w"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mfcxn"]
+shader = ExtResource("2_hq88l")
+shader_parameter/scroll_speed = null
+
+[node name="Level4" type="Node2D"]
+script = ExtResource("1_yb54q")
+
+[node name="BackGround" type="TextureRect" parent="."]
+texture_repeat = 2
+material = SubResource("ShaderMaterial_mfcxn")
+offset_left = 7.0
+offset_top = -3.0
+offset_right = 1287.0
+offset_bottom = 717.0
+scale = Vector2(0.899219, 0.904167)
+texture = ExtResource("2_yy0cm")
+
+[node name="Player" parent="." instance=ExtResource("4_nwj4w")]
+
+[node name="StartPosition" type="Marker2D" parent="."]
+position = Vector2(389, 543)
+
+[node name="HudLevels" parent="." instance=ExtResource("1_wmlix")]
+
+[node name="TimerRemain" type="Timer" parent="."]
+
+[connection signal="timeout" from="TimerRemain" to="." method="_on_timer_remain_timeout"]

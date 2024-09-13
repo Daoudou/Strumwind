@@ -1,0 +1,30 @@
+[gd_scene load_steps=7 format=3 uid="uid://c61hpiqsyj5nc"]
+
+[ext_resource type="Texture2D" uid="uid://ctwh54cqyd7di" path="res://art/background5.png" id="1_i04hd"]
+[ext_resource type="Script" path="res://levels/level_1.gd" id="1_tloy2"]
+[ext_resource type="PackedScene" uid="uid://d042qadhulha7" path="res://scenes/global/hud_levels.tscn" id="2_r2mxb"]
+[ext_resource type="Shader" path="res://levels/level_1.gdshader" id="2_vnoil"]
+[ext_resource type="Script" path="res://ScrollingBackground.gd" id="4_bb223"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_l7mh0"]
+shader = ExtResource("2_vnoil")
+shader_parameter/scroll_speed = null
+
+[node name="Level1" type="Node2D"]
+script = ExtResource("1_tloy2")
+
+[node name="Background5" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_l7mh0")
+offset_left = 4.0
+offset_top = -3.00003
+offset_right = 1284.0
+offset_bottom = 717.0
+scale = Vector2(0.907031, 0.906944)
+texture = ExtResource("1_i04hd")
+script = ExtResource("4_bb223")
+
+[node name="HudLevels" parent="." instance=ExtResource("2_r2mxb")]
+
+[node name="TimerRemain" type="Timer" parent="."]
+
+[connection signal="timeout" from="TimerRemain" to="." method="_on_timer_remain_timeout"]

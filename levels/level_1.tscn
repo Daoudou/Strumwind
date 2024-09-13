@@ -1,0 +1,50 @@
+[gd_scene load_steps=8 format=3 uid="uid://c61hpiqsyj5nc"]
+
+[ext_resource type="Texture2D" uid="uid://ctwh54cqyd7di" path="res://art/background5.png" id="1_i04hd"]
+[ext_resource type="Script" path="res://levels/level_1.gd" id="1_tloy2"]
+[ext_resource type="PackedScene" uid="uid://d042qadhulha7" path="res://scenes/global/hud_levels.tscn" id="2_r2mxb"]
+[ext_resource type="Shader" path="res://levels/level_1.gdshader" id="2_vnoil"]
+[ext_resource type="PackedScene" uid="uid://dpgvyj08o5pe1" path="res://models/characters/player.tscn" id="5_y8gmr"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_l7mh0"]
+shader = ExtResource("2_vnoil")
+shader_parameter/scroll_speed = null
+
+[sub_resource type="Curve2D" id="Curve2D_anniu"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 3, 2, 0, 0, 0, 0, 754, 2, 0, 0, 0, 0, 752, 645, 0, 0, 0, 0, 1, 645)
+}
+point_count = 4
+
+[node name="Level1" type="Node2D"]
+script = ExtResource("1_tloy2")
+
+[node name="Background5" type="TextureRect" parent="."]
+texture_repeat = 2
+material = SubResource("ShaderMaterial_l7mh0")
+offset_left = 4.0
+offset_top = -3.00003
+offset_right = 1284.0
+offset_bottom = 717.0
+scale = Vector2(0.907031, 0.906944)
+texture = ExtResource("1_i04hd")
+stretch_mode = 1
+
+[node name="Player" parent="." instance=ExtResource("5_y8gmr")]
+position = Vector2(433, 539)
+scale = Vector2(0.7, 0.7)
+
+[node name="StartPosition" type="Marker2D" parent="."]
+position = Vector2(389, 543)
+
+[node name="HudLevels" parent="." instance=ExtResource("2_r2mxb")]
+
+[node name="TimerRemain" type="Timer" parent="."]
+
+[node name="MobPath" type="Path2D" parent="."]
+curve = SubResource("Curve2D_anniu")
+
+[node name="MobSpawnLocation" type="PathFollow2D" parent="MobPath"]
+position = Vector2(3, 2)
+
+[connection signal="timeout" from="TimerRemain" to="." method="_on_timer_remain_timeout"]

@@ -2,6 +2,14 @@ extends Node2D
 
 var RigidBody2D_scene: PackedScene
 
+@onready var giveUpButton = $HudLevels/GiveUpButton
+@onready var pauseButton = $HudLevels/PauseButton
+@onready var player = $Player
+@onready var hudLevels = $HudLevels
+@onready var timerRemain = $TimerRemain
+@onready var startPosition = $StartPosition
+@onready var mobSpawnLocation = $MobPath/MobSpawnLocation
+
 var timer
 var level
 var score
@@ -12,14 +20,14 @@ var posX
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	start_level()
-	$HudLevels/GiveUpButton.connect("pressed",Callable(self,"game_over"))
-	$HudLevels/PauseButton.connect("pressed",Callable(self,"_on_GamePaused"))
+	giveUpButton.connect("pressed",Callable(self,"game_over"))
+	pauseButton.connect("pressed",Callable(self,"_on_GamePaused"))
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	#pass
 	# Pour l'instant le simple fait de nous toucher provoque un game over
-	if	($Player.hitten):
+	if	(player.hitten):
 		game_over()
 
 func start_level():
@@ -28,10 +36,10 @@ func start_level():
 	score = 0
 	posX = 100
 	is_paused = false
-	$HudLevels.show_message("Get Ready")
-	$Player.start($StartPosition.position)
-	$TimerRemain.start()
-	$HudLevels.show_level(level)
+	hudLevels.show_message("Get Ready")
+	player.start(startPosition.position)
+	timerRemain.start()
+	hudLevels.show_level(level)
 	
 	RigidBody2D_scene = preload("res://models/characters/soldier.tscn")
 	
@@ -42,7 +50,7 @@ func start_level():
 		soldierInstance.gravity_scale = 0
 		soldierInstance.rotate(180 *PI/180)
 		
-		var mob_spawn_location = $MobPath/MobSpawnLocation
+		var mob_spawn_location = mobSpawnLocation
 		var direction = mob_spawn_location.rotation *PI/2
 		direction += (90*PI/180)
 		
@@ -57,28 +65,28 @@ func start_level():
 func _on_timer_remain_timeout() -> void:
 	timer -= 1
 	if (timer >= 0):
-		$HudLevels.update_timer(timer)
+		hudLevels.update_timer(timer)
 	else:
 		game_over()
 		
 func game_over():
-	$TimerRemain.stop()
-	$Player.gameOver = true
-	$HudLevels.show_game_over()
-	$HudLevels/GiveUpButton.hide()
-	$HudLevels/PauseButton.hide()
+	timerRemain.stop()
+	player.gameOver = true
+	hudLevels.show_game_over()
+	giveUpButton.hide()
+	pauseButton.hide()
 	
 	
 func _on_GamePaused():
 	if	(is_paused == false):
-		$HudLevels.set_process(false)
-		$TimerRemain.stop()
-		$HudLevels.show_message("Paused")
+		hudLevels.set_process(false)
+		timerRemain.stop()
+		hudLevels.show_message("Paused")
 		is_paused = true
 	elif (is_paused == true):
-		$HudLevels.set_process(true)
-		$TimerRemain.start()
-		$HudLevels.show_message("")
+		hudLevels.set_process(true)
+		timerRemain.start()
+		hudLevels.show_message("")
 		is_paused = false
 		
 	

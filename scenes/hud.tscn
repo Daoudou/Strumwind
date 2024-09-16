@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://me04ghyu01ql"]
+[gd_scene load_steps=5 format=3 uid="uid://me04ghyu01ql"]
 
 [ext_resource type="Script" path="res://scenes/hud.gd" id="1_8nic2"]
 [ext_resource type="FontFile" uid="uid://csa321l6atcac" path="res://fonts/Xolonium-Regular.ttf" id="1_ptntq"]
+[ext_resource type="StyleBox" uid="uid://bgnnhrlegoqmb" path="res://art/styling/button.tres" id="3_1xy8e"]
+[ext_resource type="StyleBox" uid="uid://pokbpvuf4i2w" path="res://art/styling/buttonPressed.tres" id="3_wv8uu"]
 
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource("1_8nic2")
@@ -34,6 +36,9 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("1_ptntq")
 theme_override_font_sizes/font_size = 64
+theme_override_styles/hover = ExtResource("3_1xy8e")
+theme_override_styles/pressed = ExtResource("3_wv8uu")
+theme_override_styles/normal = ExtResource("3_1xy8e")
 text = "Start"
 
 [node name="ExitButton" type="Button" parent="."]
@@ -50,6 +55,9 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("1_ptntq")
 theme_override_font_sizes/font_size = 64
+theme_override_styles/hover = ExtResource("3_1xy8e")
+theme_override_styles/pressed = ExtResource("3_wv8uu")
+theme_override_styles/normal = ExtResource("3_1xy8e")
 text = "Exit
 "
 

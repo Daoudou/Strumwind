@@ -1,14 +1,21 @@
-[gd_scene load_steps=7 format=3 uid="uid://bx27qcn8ups8x"]
+[gd_scene load_steps=9 format=3 uid="uid://bx27qcn8ups8x"]
 
 [ext_resource type="Script" path="res://levels/level_2.gd" id="1_0oewt"]
 [ext_resource type="Texture2D" uid="uid://ctwh54cqyd7di" path="res://art/background5.png" id="1_fla8c"]
 [ext_resource type="PackedScene" uid="uid://d042qadhulha7" path="res://scenes/global/hud_levels.tscn" id="1_s3f4a"]
 [ext_resource type="Shader" path="res://levels/level_1.gdshader" id="2_tw364"]
 [ext_resource type="PackedScene" uid="uid://dpgvyj08o5pe1" path="res://models/characters/player.tscn" id="4_nld8m"]
+[ext_resource type="PackedScene" uid="uid://c8w2fsbl2t601" path="res://models/characters/healer.tscn" id="6_cet4w"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_66fpr"]
 shader = ExtResource("2_tw364")
 shader_parameter/scroll_speed = null
+
+[sub_resource type="Curve2D" id="Curve2D_u3tph"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 3, 2, 0, 0, 0, 0, 754, 2, 0, 0, 0, 0, 752, 645, 0, 0, 0, 0, 1, 645)
+}
+point_count = 4
 
 [node name="Level2" type="Node2D"]
 script = ExtResource("1_0oewt")
@@ -24,6 +31,7 @@ scale = Vector2(0.896094, 0.904861)
 texture = ExtResource("1_fla8c")
 
 [node name="Player" parent="." instance=ExtResource("4_nld8m")]
+scale = Vector2(0.7, 0.7)
 
 [node name="StartPosition" type="Marker2D" parent="."]
 position = Vector2(389, 543)
@@ -31,5 +39,23 @@ position = Vector2(389, 543)
 [node name="HudLevels" parent="." instance=ExtResource("1_s3f4a")]
 
 [node name="TimerRemain" type="Timer" parent="."]
+
+[node name="MobPath" type="Path2D" parent="."]
+curve = SubResource("Curve2D_u3tph")
+
+[node name="MobSpawnLocation" type="PathFollow2D" parent="MobPath"]
+position = Vector2(3, 2)
+
+[node name="Healer" parent="." instance=ExtResource("6_cet4w")]
+position = Vector2(518, 80)
+rotation = 3.14159
+mass = 0.001
+gravity_scale = 0.0
+
+[node name="Healer2" parent="." instance=ExtResource("6_cet4w")]
+position = Vector2(265, 80)
+rotation = 3.14159
+mass = 0.001
+gravity_scale = 0.0
 
 [connection signal="timeout" from="TimerRemain" to="." method="_on_timer_remain_timeout"]

@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://cf7h3c7l5ahst"]
+
+[ext_resource type="Texture2D" uid="uid://bw85l6ekpd62t" path="res://art/ennemy/Boss.png" id="1_cun3u"]
+[ext_resource type="Script" path="res://models/characters/boss.gd" id="1_x7w3g"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_urs5m"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_cun3u")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3y1ku"]
+size = Vector2(607, 254)
+
+[node name="Boss" type="RigidBody2D"]
+mass = 0.001
+gravity_scale = 0.0
+script = ExtResource("1_x7w3g")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(1.5, 1.5)
+sprite_frames = SubResource("SpriteFrames_urs5m")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, -73)
+shape = SubResource("RectangleShape2D_3y1ku")
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]

@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://b7atkj00cnh0s"]
+[gd_scene load_steps=7 format=3 uid="uid://b7atkj00cnh0s"]
 
 [ext_resource type="PackedScene" uid="uid://oms48v6haxa5" path="res://scenes/list/control_button_list.tscn" id="1_g2m1x"]
 [ext_resource type="Script" path="res://scenes/levels_select.gd" id="1_sfkh3"]
 [ext_resource type="FontFile" uid="uid://csa321l6atcac" path="res://fonts/Xolonium-Regular.ttf" id="2_talwh"]
 [ext_resource type="Texture2D" uid="uid://gsugqbvb1xvg" path="res://art/background_select_levels.png" id="4_sq8ks"]
+[ext_resource type="StyleBox" uid="uid://bgnnhrlegoqmb" path="res://art/styling/button.tres" id="5_41o64"]
+[ext_resource type="StyleBox" uid="uid://pokbpvuf4i2w" path="res://art/styling/buttonPressed.tres" id="6_ptrf0"]
 
 [node name="LevelsSelect" type="Node"]
 script = ExtResource("1_sfkh3")
@@ -32,6 +34,9 @@ offset_right = 695.0
 offset_bottom = 510.0
 theme_override_fonts/font = ExtResource("2_talwh")
 theme_override_font_sizes/font_size = 64
+theme_override_styles/hover = ExtResource("5_41o64")
+theme_override_styles/pressed = ExtResource("6_ptrf0")
+theme_override_styles/normal = ExtResource("5_41o64")
 text = "Return"
 
 [node name="TextureRect" type="TextureRect" parent="."]

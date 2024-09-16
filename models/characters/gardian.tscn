@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://bre0ghlcmhf2d"]
+
+[ext_resource type="Script" path="res://models/characters/gardian.gd" id="1_3vb7r"]
+[ext_resource type="Texture2D" uid="uid://b16mujw4ig4kt" path="res://art/ennemy/Gardians.png" id="1_oyjaq"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_si5gi"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_oyjaq")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_u7eh2"]
+radius = 100.02
+
+[node name="Gardian" type="RigidBody2D"]
+mass = 0.001
+gravity_scale = 0.0
+script = ExtResource("1_3vb7r")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.4, 0.4)
+sprite_frames = SubResource("SpriteFrames_si5gi")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-2, 8)
+shape = SubResource("CircleShape2D_u7eh2")
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]

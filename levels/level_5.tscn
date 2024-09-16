@@ -1,10 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://sagulgd4t0f5"]
+[gd_scene load_steps=9 format=3 uid="uid://sagulgd4t0f5"]
 
 [ext_resource type="PackedScene" uid="uid://d042qadhulha7" path="res://scenes/global/hud_levels.tscn" id="1_2p1s7"]
 [ext_resource type="Script" path="res://levels/level_5.gd" id="1_akssq"]
 [ext_resource type="Texture2D" uid="uid://bo7m3it8l6xe6" path="res://art/background2.jpg" id="2_hfg3g"]
 [ext_resource type="Shader" path="res://levels/level_1.gdshader" id="2_v6jum"]
 [ext_resource type="PackedScene" uid="uid://dpgvyj08o5pe1" path="res://models/characters/player.tscn" id="4_jef5l"]
+[ext_resource type="PackedScene" uid="uid://cf7h3c7l5ahst" path="res://models/characters/boss.tscn" id="6_q8gk6"]
+[ext_resource type="PackedScene" uid="uid://bre0ghlcmhf2d" path="res://models/characters/gardian.tscn" id="7_bvvga"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6vyy1"]
 shader = ExtResource("2_v6jum")
@@ -31,5 +33,14 @@ position = Vector2(389, 543)
 [node name="HudLevels" parent="." instance=ExtResource("1_2p1s7")]
 
 [node name="TimerRemain" type="Timer" parent="."]
+
+[node name="Boss" parent="." instance=ExtResource("6_q8gk6")]
+position = Vector2(350, 150)
+
+[node name="Gardian" parent="." instance=ExtResource("7_bvvga")]
+position = Vector2(600, 300)
+
+[node name="Gardian2" parent="." instance=ExtResource("7_bvvga")]
+position = Vector2(150, 300)
 
 [connection signal="timeout" from="TimerRemain" to="." method="_on_timer_remain_timeout"]

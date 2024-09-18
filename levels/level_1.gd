@@ -1,6 +1,7 @@
 extends Node2D
 
 var RigidBody2D_scene: PackedScene
+var list_of_soldier = []
 
 @onready var giveUpButton = $HudLevels/GiveUpButton
 @onready var pauseButton = $HudLevels/PauseButton
@@ -29,6 +30,11 @@ func _process(delta: float) -> void:
 	# Pour l'instant le simple fait de nous toucher provoque un game over
 	if	(player.hitten):
 		game_over()
+	
+	if !list_of_soldier.is_empty():
+		for i in range(list_of_soldier.size()):
+			var soldierInstance = list_of_soldier[i]
+			soldierInstance.directionMissile = player.position
 
 func start_level():
 	timer = 50
@@ -48,7 +54,6 @@ func start_level():
 		var soldierInstance = RigidBody2D_scene.instantiate()
 		soldierInstance.start(Vector2(posX,100))
 		soldierInstance.gravity_scale = 0
-		soldierInstance.rotate(180 *PI/180)
 		
 		var mob_spawn_location = mobSpawnLocation
 		var direction = mob_spawn_location.rotation *PI/2
@@ -56,10 +61,11 @@ func start_level():
 		
 		# On choisi la vélocité pour le mob
 		var velocity = Vector2(randf_range(50.0,50.0),0.0)
-		soldierInstance.linear_velocity = velocity.rotated(direction)
+		#soldierInstance.linear_velocity = velocity.rotated(direction)
 		
 		posX += 100 + 35
 		add_child(soldierInstance)
+		list_of_soldier.append(soldierInstance)
 	
 
 func _on_timer_remain_timeout() -> void:

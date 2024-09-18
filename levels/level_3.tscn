@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bfvusd4i1etmo"]
+[gd_scene load_steps=10 format=3 uid="uid://bfvusd4i1etmo"]
 
 [ext_resource type="PackedScene" uid="uid://d042qadhulha7" path="res://scenes/global/hud_levels.tscn" id="1_8q47g"]
 [ext_resource type="Script" path="res://levels/level_3.gd" id="1_jpgp2"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://dpgvyj08o5pe1" path="res://models/characters/player.tscn" id="4_vfdl3"]
 [ext_resource type="PackedScene" uid="uid://cdypo56o6ndqw" path="res://models/characters/speeder.tscn" id="6_4a1up"]
 [ext_resource type="PackedScene" uid="uid://bre0ghlcmhf2d" path="res://models/characters/gardian.tscn" id="7_vc4t3"]
+[ext_resource type="PackedScene" uid="uid://belv1hd3eycvc" path="res://models/missile.tscn" id="8_ln7rd"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_oxuxg"]
 shader = ExtResource("2_xb0c8")
@@ -26,6 +27,9 @@ scale = Vector2(0.9, 0.90625)
 texture = ExtResource("2_xnaua")
 
 [node name="Player" parent="." instance=ExtResource("4_vfdl3")]
+
+[node name="Missile" parent="Player" instance=ExtResource("8_ln7rd")]
+position = Vector2(518, 150)
 
 [node name="StartPosition" type="Marker2D" parent="."]
 position = Vector2(389, 543)

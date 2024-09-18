@@ -1,5 +1,7 @@
 extends Area2D
 
+@export var missile_scene: PackedScene
+
 var speed = 500
 var screen_size
 
@@ -23,6 +25,8 @@ func _process(delta: float) -> void:
 			velocity.x += 1
 		if Input.is_action_pressed("move_left"):
 			velocity.x -= 1
+		if Input.is_action_pressed("fire"):
+			fire_missile()
 		
 		if velocity.length() > 0: # On verifie que le vecteur n'est pas null
 			velocity = velocity.normalized() * speed
@@ -41,3 +45,18 @@ func start(pos):
 
 func _on_body_entered(body: Node2D) -> void:
 	hitten = true
+	
+	
+func fire_missile():
+	
+	missile_scene = preload("res://models/missile.tscn")
+	var missile = missile_scene.instantiate() as Area2D
+	
+	# Définir la direction du missile (par exemple, vers la droite)
+	missile.direction = Vector2.UP
+	
+	# Ajuster la rotation du missile pour qu'il fasse face à sa direction
+	missile.rotation = missile.direction.angle()
+	
+	add_child(missile)
+	

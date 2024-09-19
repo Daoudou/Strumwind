@@ -6,6 +6,9 @@ extends Node2D
 @onready var hudLevels = $HudLevels
 @onready var timerRemain = $TimerRemain
 @onready var startPosition = $StartPosition
+@onready var speeder = $Speeder
+@onready var speeder2 = $Speeder2
+@onready var speeder3 = $Speeder3
 
 var timer
 var level
@@ -20,7 +23,9 @@ func _ready() -> void:
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
+	speeder.targetPosition = player.position
+	speeder2.targetPosition = player.position
+	speeder3.targetPosition = player.position
 
 func start_level():
 	timer = 80

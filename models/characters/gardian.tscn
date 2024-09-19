@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://bre0ghlcmhf2d"]
+[gd_scene load_steps=6 format=3 uid="uid://bre0ghlcmhf2d"]
 
 [ext_resource type="Script" path="res://models/characters/gardian.gd" id="1_3vb7r"]
 [ext_resource type="Texture2D" uid="uid://b16mujw4ig4kt" path="res://art/ennemy/Gardians.png" id="1_oyjaq"]
+[ext_resource type="PackedScene" uid="uid://dsxy1lknn584o" path="res://models/shield.tscn" id="3_jq0l4"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_si5gi"]
 animations = [{
@@ -31,3 +32,5 @@ position = Vector2(-2, 8)
 shape = SubResource("CircleShape2D_u7eh2")
 
 [node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
+
+[node name="Shield" parent="." instance=ExtResource("3_jq0l4")]

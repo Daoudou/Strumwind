@@ -51,9 +51,9 @@ position = Vector2(650, 250)
 rotation = 3.14159
 
 [node name="Gardian" parent="." instance=ExtResource("7_vc4t3")]
-position = Vector2(518, 150)
+position = Vector2(518, 60)
 
 [node name="Gardian2" parent="." instance=ExtResource("7_vc4t3")]
-position = Vector2(265, 150)
+position = Vector2(265, 60)
 
 [connection signal="timeout" from="TimerRemain" to="." method="_on_timer_remain_timeout"]

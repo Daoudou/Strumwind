@@ -44,7 +44,6 @@ func start_level():
 		var soldierInstance = RigidBody2D_scene.instantiate()
 		soldierInstance.start(Vector2(posX,250))
 		soldierInstance.gravity_scale = 0
-		soldierInstance.rotate(180 *PI/180)
 		
 		posX += 100 + 35
 		add_child(soldierInstance)

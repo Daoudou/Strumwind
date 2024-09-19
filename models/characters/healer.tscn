@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://c8w2fsbl2t601"]
+[gd_scene load_steps=6 format=3 uid="uid://c8w2fsbl2t601"]
 
 [ext_resource type="Texture2D" uid="uid://dchg3ag86cjg2" path="res://art/ennemy/Healer.png" id="1_brm13"]
 [ext_resource type="Script" path="res://models/characters/healer.gd" id="1_pels7"]
+[ext_resource type="PackedScene" uid="uid://4a1oe8mj1edq" path="res://models/heal.tscn" id="3_ha3mr"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_8gmhd"]
 animations = [{
@@ -30,3 +31,5 @@ position = Vector2(0, 4)
 shape = SubResource("CapsuleShape2D_kse61")
 
 [node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
+
+[node name="Heal" parent="." instance=ExtResource("3_ha3mr")]

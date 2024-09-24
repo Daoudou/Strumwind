@@ -2,6 +2,8 @@ extends Area2D
 
 @export var missile_scene: PackedScene
 
+var pv
+
 var speed = 500
 var screen_size
 
@@ -11,7 +13,7 @@ var gameOver
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	screen_size = get_viewport_rect().size
-	hide()
+	#hide()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -39,6 +41,7 @@ func _process(delta: float) -> void:
 
 func start(pos):
 	position = pos
+	pv = 100
 	hitten = false
 	gameOver = false
 	show()

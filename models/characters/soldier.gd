@@ -30,21 +30,21 @@ func start(pos):
 func fire_missile():
 	for i in range(3):
 		missile_scene = missileLoad
-		var missile = missile_scene.instantiate() as Area2D
+		var missile = missile_scene.instantiate() as RigidBody2D
 		
 		var target = Vector2.ZERO	
-		if i == 0:
-			target = Vector2(missile.position.x - 200,1000)
-		elif i == 1:
-			target = Vector2(missile.position.x,1000)
-		elif i == 2:
-			target = Vector2(missile.position.x + 200,1000)
-	
+		#if i == 0:
+			#target = Vector2(missile.position.x - 200,1000)
+		#elif i == 1:
+			#target = Vector2(missile.position.x,1000)
+		#elif i == 2:
+			#target = Vector2(missile.position.x + 200,1000)
+		
+		target = Vector2(missile.position.x,1000)
 		missile.position = Vector2(missile.position.x,missile.position.y + 65)
 	
 		missile.direction = (target - missile.position).normalized()
 		missile.velocity = (target - missile.position).normalized() * missile.speed
-	
 		# Ajuster la rotation du missile pour qu'il fasse face à sa direction
 		missile.rotation = missile.direction.angle()
 	

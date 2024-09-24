@@ -5,6 +5,7 @@ extends Node
 @onready var message = $Message
 @onready var messageTimer = $MessageTimer
 @onready var scoreOfScoreLabel = $ScoreLabel/Score
+@onready var pvTimer = $PV/PVNum
 @onready var timerNum = $Timer/TimeNum
 @onready var levelOfLevels = $NumberLevels/Level
 
@@ -40,6 +41,9 @@ func show_game_over():
 	
 func update_timer(time):
 	timerNum.text = str(time)
+	
+func update_pv(pv):
+	pvTimer.text = str(pv)
 	
 func update_score(score):
 	scoreOfScoreLabel.text = str(score)

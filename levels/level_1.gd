@@ -7,6 +7,7 @@ var list_of_soldier = []
 @onready var pauseButton = $HudLevels/PauseButton
 @onready var player = $Player
 @onready var hudLevels = $HudLevels
+@onready var pvTimer = $TimerPV
 @onready var timerRemain = $TimerRemain
 @onready var startPosition = $StartPosition
 @onready var mobSpawnLocation = $MobPath/MobSpawnLocation
@@ -45,6 +46,7 @@ func start_level():
 	hudLevels.show_message("Get Ready")
 	player.start(startPosition.position)
 	timerRemain.start()
+	pvTimer.start()
 	hudLevels.show_level(level)
 	
 	RigidBody2D_scene = preload("res://models/characters/soldier.tscn")
@@ -94,6 +96,6 @@ func _on_GamePaused():
 		timerRemain.start()
 		hudLevels.show_message("")
 		is_paused = false
-		
-	
-	
+
+func _on_timer_pv_timeout() -> void:
+	hudLevels.update_pv(player.pv)

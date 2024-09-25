@@ -18,7 +18,7 @@ animations = [{
 radius = 23.0
 height = 80.0
 
-[node name="Speeder" type="RigidBody2D"]
+[node name="Speeder" type="RigidBody2D" groups=["enemies"]]
 mass = 0.001
 gravity_scale = 0.0
 script = ExtResource("1_o8etr")

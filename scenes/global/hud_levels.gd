@@ -22,6 +22,15 @@ func show_message(text):
 	message.show()
 	messageTimer.start()
 
+func show_victory(nextLevel):
+	show_message("victory")
+	
+	await get_tree().create_timer(1.0).timeout
+	message.text = "Go to the next level"
+	message.show()
+
+	get_tree().change_scene_to_file(nextLevel)
+	
 func show_game_over():
 	show_message("Game Over")
 	

@@ -1,5 +1,6 @@
 extends RigidBody2D
 
+var pv
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass
@@ -10,4 +11,10 @@ func _process(delta: float) -> void:
 
 func start(pos):
 	position = pos
+	pv = 150
 	show()
+
+func take_damage(damage):
+	pv -= damage
+	if (pv <= 0):
+		queue_free()

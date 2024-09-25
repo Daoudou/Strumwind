@@ -18,7 +18,9 @@ animations = [{
 radius = 42.0
 height = 116.0
 
-[node name="Soldier" type="RigidBody2D"]
+[node name="Soldier" type="RigidBody2D" groups=["enemies"]]
+mass = 0.001
+gravity_scale = 0.0
 script = ExtResource("1_73itq")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

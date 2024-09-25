@@ -29,14 +29,24 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	#pass
 	# Pour l'instant le simple fait de nous toucher provoque un game over
-	if	(player.hitten):
-		game_over()
+	#if	(player.hitten):
+	#	game_over()
 	
 	if !list_of_soldier.is_empty():
 		for i in range(list_of_soldier.size()):
 			var soldierInstance = list_of_soldier[i]
-			soldierInstance.directionMissile = player.position
-
+			if soldierInstance != null:
+				soldierInstance.directionMissile = player.position
+	else:
+		victory()
+				
+	if !list_of_soldier.is_empty():
+		for i in range(list_of_soldier.size()):
+			var soldierRemove = list_of_soldier[i]
+			if soldierRemove == null:
+				list_of_soldier.remove_at(i)
+				break
+				
 func start_level():
 	timer = 50
 	level = 1
@@ -55,7 +65,7 @@ func start_level():
 	for i in range(0,num_soldier_instance):
 		var soldierInstance = RigidBody2D_scene.instantiate()
 		soldierInstance.start(Vector2(posX,100))
-		soldierInstance.gravity_scale = 0
+		#soldierInstance.gravity_scale = 0
 		
 		var mob_spawn_location = mobSpawnLocation
 		var direction = mob_spawn_location.rotation *PI/2
@@ -69,7 +79,6 @@ func start_level():
 		add_child(soldierInstance)
 		list_of_soldier.append(soldierInstance)
 	
-
 func _on_timer_remain_timeout() -> void:
 	timer -= 1
 	if (timer >= 0):
@@ -77,13 +86,18 @@ func _on_timer_remain_timeout() -> void:
 	else:
 		game_over()
 		
+func victory():
+	timerRemain.stop()
+	giveUpButton.hide()
+	pauseButton.hide()
+	hudLevels.show_victory("res://levels/level_2.tscn")
+		
 func game_over():
 	timerRemain.stop()
 	player.gameOver = true
 	hudLevels.show_game_over()
 	giveUpButton.hide()
 	pauseButton.hide()
-	
 	
 func _on_GamePaused():
 	if	(is_paused == false):

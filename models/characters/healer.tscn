@@ -19,7 +19,7 @@ animations = [{
 radius = 32.0
 height = 132.0
 
-[node name="Healer" type="RigidBody2D"]
+[node name="Healer" type="RigidBody2D" groups=["enemies"]]
 script = ExtResource("1_pels7")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

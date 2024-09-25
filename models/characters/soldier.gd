@@ -10,6 +10,8 @@ var time_since_last_shot: float = 0.0
 
 var directionMissile: Vector2 = Vector2.ZERO
 
+var pv
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	#set_physics_process(true)
@@ -25,20 +27,14 @@ func _process(delta: float) -> void:
 
 func start(pos):
 	position = pos
+	pv = 100
 	show()
 
 func fire_missile():
-	for i in range(3):
+	for i in range(1):
 		missile_scene = missileLoad
-		var missile = missile_scene.instantiate() as RigidBody2D
-		
+		var missile = missile_scene.instantiate() as Area2D
 		var target = Vector2.ZERO	
-		#if i == 0:
-			#target = Vector2(missile.position.x - 200,1000)
-		#elif i == 1:
-			#target = Vector2(missile.position.x,1000)
-		#elif i == 2:
-			#target = Vector2(missile.position.x + 200,1000)
 		
 		target = Vector2(missile.position.x,1000)
 		missile.position = Vector2(missile.position.x,missile.position.y + 65)
@@ -48,6 +44,9 @@ func fire_missile():
 		# Ajuster la rotation du missile pour qu'il fasse face à sa direction
 		missile.rotation = missile.direction.angle()
 	
-		add_child(missile)
-
-	
+		#add_child(missile)
+		
+func take_damage(damage):
+	pv -= damage
+	if (pv <= 0):
+		queue_free()

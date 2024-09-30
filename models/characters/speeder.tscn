@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://cdypo56o6ndqw"]
+[gd_scene load_steps=6 format=3 uid="uid://cdypo56o6ndqw"]
 
 [ext_resource type="Texture2D" uid="uid://b8t7ym8l5467c" path="res://art/ennemy/Speeder.png" id="1_6ub82"]
 [ext_resource type="Script" path="res://models/characters/speeder.gd" id="1_o8etr"]
+[ext_resource type="PackedScene" uid="uid://dsxy1lknn584o" path="res://models/shield.tscn" id="3_b11pf"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_s3vfl"]
 animations = [{
@@ -34,3 +35,43 @@ rotation = 1.5708
 shape = SubResource("CapsuleShape2D_f472m")
 
 [node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
+
+[node name="Shield" parent="." instance=ExtResource("3_b11pf")]
+position = Vector2(-2, 2)
+scale = Vector2(0.3, 0.3)
+
+[node name="LabelPv" type="Label" parent="."]
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 60.0
+offset_bottom = 43.0
+text = "PV :"
+
+[node name="LabelPvNum" type="Label" parent="LabelPv"]
+layout_mode = 0
+offset_left = 30.0
+offset_right = 70.0
+offset_bottom = 23.0
+text = "0
+"
+
+[node name="LabelShield" type="Label" parent="."]
+offset_left = 20.0
+offset_top = 40.0
+offset_right = 76.0
+offset_bottom = 63.0
+text = "Shield :"
+
+[node name="LabelShieldNum" type="Label" parent="LabelShield"]
+layout_mode = 0
+offset_left = 60.0
+offset_right = 100.0
+offset_bottom = 23.0
+text = "0"
+
+[node name="TimerPV" type="Timer" parent="."]
+
+[node name="TimerShield" type="Timer" parent="."]
+
+[connection signal="timeout" from="TimerPV" to="." method="_on_timer_pv_timeout"]
+[connection signal="timeout" from="TimerShield" to="." method="_on_timer_shield_timeout"]

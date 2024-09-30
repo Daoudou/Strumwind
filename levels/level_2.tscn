@@ -47,13 +47,7 @@ curve = SubResource("Curve2D_u3tph")
 position = Vector2(3, 2)
 
 [node name="Healer" parent="." instance=ExtResource("6_cet4w")]
-position = Vector2(518, 80)
-rotation = 3.14159
-mass = 0.001
-gravity_scale = 0.0
-
-[node name="Healer2" parent="." instance=ExtResource("6_cet4w")]
-position = Vector2(265, 80)
+position = Vector2(400, 80)
 rotation = 3.14159
 mass = 0.001
 gravity_scale = 0.0

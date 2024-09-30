@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://dpgvyj08o5pe1"]
+[gd_scene load_steps=6 format=3 uid="uid://dpgvyj08o5pe1"]
 
 [ext_resource type="Script" path="res://models/characters/player.gd" id="1_0e6u2"]
 [ext_resource type="Texture2D" uid="uid://dl42pu3tfgova" path="res://art/player/BaseShip.png" id="1_8owef"]
+[ext_resource type="PackedScene" uid="uid://dsxy1lknn584o" path="res://models/shield.tscn" id="3_ufkdy"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_416fa"]
 animations = [{
@@ -18,8 +19,9 @@ animations = [{
 radius = 43.0
 height = 86.0
 
-[node name="Player" type="Area2D" groups=["playerGame"]]
-collision_mask = 128
+[node name="Player" type="RigidBody2D" groups=["playerGame"]]
+mass = 0.001
+gravity_scale = 0.0
 script = ExtResource("1_0e6u2")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -29,5 +31,8 @@ sprite_frames = SubResource("SpriteFrames_416fa")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(1, 1)
 shape = SubResource("CapsuleShape2D_3eboa")
+
+[node name="Shield" parent="." instance=ExtResource("3_ufkdy")]
+scale = Vector2(0.5, 0.5)
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

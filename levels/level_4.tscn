@@ -34,9 +34,6 @@ position = Vector2(389, 543)
 [node name="TimerRemain" type="Timer" parent="."]
 
 [node name="Gardian" parent="." instance=ExtResource("6_pmid5")]
-position = Vector2(518, 300)
-
-[node name="Gardian2" parent="." instance=ExtResource("6_pmid5")]
-position = Vector2(265, 300)
+position = Vector2(350, 100)
 
 [connection signal="timeout" from="TimerRemain" to="." method="_on_timer_remain_timeout"]

@@ -65,13 +65,5 @@ text = "0"
 
 [node name="TimerShield" type="Timer" parent="."]
 
-[node name="Label" type="Label" parent="."]
-visible = false
-offset_left = 86.0
-offset_top = 152.0
-offset_right = 149.0
-offset_bottom = 175.0
-text = "position"
-
 [connection signal="timeout" from="TimerPV" to="." method="_on_timer_pv_timeout"]
 [connection signal="timeout" from="TimerShield" to="." method="_on_timer_shield_timeout"]

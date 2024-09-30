@@ -1,11 +1,14 @@
-extends Area2D
+extends RigidBody2D
 
 @export var missile_scene: PackedScene
 @onready var collision = $CollisionShape2D
+@onready var ShieldNode = $Shield
+
 @export var fire_rate = 0.2 # Ceci cera l'intervalle entre les tirs (définie en secondes)
 var time_since_last_shot: float = 0.0
 
 var pv
+var shieldPV
 
 var speed = 500
 var screen_size
@@ -21,6 +24,9 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	if (shieldPV <= 0):
+		ShieldNode.hide()
+		
 	if (gameOver == false):
 		var velocity = Vector2.ZERO
 		if Input.is_action_pressed("move_up"):
@@ -49,21 +55,27 @@ func _process(delta: float) -> void:
 func start(pos):
 	position = pos
 	pv = 100
+	shieldPV = 100
 	hitten = false
 	gameOver = false
 	show()
 	
 func take_damage(damage):
-	pv -= damage
+	if (shieldPV <= 0):
+		pv -= damage
+		if (pv <= 0):
+			queue_free()
+	else:
+		shieldPV -= damage
 	
 func fire_missile():
 	
 	missile_scene = preload("res://models/missile.tscn")
 	var missile = missile_scene.instantiate() as Area2D
-	missile.set_degat(50)
+	missile.set_degat(10)
 	# Définir la direction du missile (par exemple, vers la droite)
 	missile.direction = Vector2.UP
-	
+	missile.position = Vector2(missile.position.x, -80)
 	# Ajuster la rotation du missile pour qu'il fasse face à sa direction
 	missile.rotation = missile.direction.angle()
 	
@@ -71,3 +83,6 @@ func fire_missile():
 	
 func _on_body_entered(body: Node2D) -> void:
 	print("joueur toucher")
+
+func getPv():
+	return pv

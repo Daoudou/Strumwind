@@ -6,9 +6,15 @@ extends Node2D
 @onready var hudLevels = $HudLevels
 @onready var timerRemain = $TimerRemain
 @onready var startPosition = $StartPosition
+
 @onready var speeder = $Speeder
 @onready var speeder2 = $Speeder2
 @onready var speeder3 = $Speeder3
+
+@onready var gardian = $Gardian
+
+@export var fire_rate = 0.2 # Ceci cera l'intervalle entre les shield (définie en secondes)
+var time_since_last_shot: float = 0.0
 
 var timer
 var level
@@ -23,9 +29,33 @@ func _ready() -> void:
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	speeder.targetPosition = player.position
-	speeder2.targetPosition = player.position
-	speeder3.targetPosition = player.position
+	if	(player.getPv() <= 0):
+		game_over()
+		
+	if (speeder != null):
+		speeder.targetPosition = player.position
+		if (speeder.shieldPV != 0):
+			if (gardian != null):
+				gardian.give_shield(speeder, 100)
+			else:
+				speeder.shieldPV = 0
+	if (speeder2 != null):
+		speeder2.targetPosition = player.position
+		if (speeder2.shieldPV != 0):
+			if (gardian != null):
+				gardian.give_shield(speeder2, 100)
+			else:
+				speeder2.shieldPV = 0
+	if (speeder3 != null):
+		speeder3.targetPosition = player.position
+		if (speeder3.shieldPV != 0):
+			if (gardian != null):
+				gardian.give_shield(speeder3, 100)
+			else:
+				speeder3.shieldPV = 0
+				
+	if ((speeder and speeder2 and speeder3 and gardian) == null):
+		victory()
 
 func start_level():
 	timer = 80
@@ -61,4 +91,8 @@ func _on_GamePaused():
 		is_paused = false
 		
 	
-	
+func victory():
+	timerRemain.stop()
+	giveUpButton.hide()
+	pauseButton.hide()
+	hudLevels.show_victory("res://levels/level_4.tscn")

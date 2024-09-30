@@ -1,7 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://cuyovh6jc8u16"]
+[gd_scene load_steps=7 format=3 uid="uid://cuyovh6jc8u16"]
 
 [ext_resource type="Script" path="res://models/characters/soldier.gd" id="1_73itq"]
 [ext_resource type="Texture2D" uid="uid://bs4ijs23dvlf6" path="res://art/ennemy/Soldier.png" id="1_d6dij"]
+[ext_resource type="FontFile" uid="uid://csa321l6atcac" path="res://fonts/Xolonium-Regular.ttf" id="3_4errp"]
+[ext_resource type="PackedScene" uid="uid://dsxy1lknn584o" path="res://models/shield.tscn" id="3_quppa"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_yddax"]
 animations = [{
@@ -33,3 +35,46 @@ position = Vector2(1, -18)
 shape = SubResource("CapsuleShape2D_lkmfa")
 
 [node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
+
+[node name="Shield" parent="." instance=ExtResource("3_quppa")]
+position = Vector2(0, -7)
+scale = Vector2(0.5, 0.5)
+
+[node name="PvLabel" type="Label" parent="."]
+offset_left = 45.0
+offset_top = 50.0
+offset_right = 85.0
+offset_bottom = 73.0
+theme_override_fonts/font = ExtResource("3_4errp")
+text = "PV : "
+
+[node name="LabelNumPv" type="Label" parent="PvLabel"]
+layout_mode = 0
+offset_left = 40.0
+offset_top = -3.0
+offset_right = 80.0
+offset_bottom = 20.0
+text = "0"
+
+[node name="TimerPv" type="Timer" parent="."]
+
+[node name="ShieldLabel" type="Label" parent="."]
+offset_left = 45.0
+offset_top = 70.0
+offset_right = 112.0
+offset_bottom = 93.0
+theme_override_fonts/font = ExtResource("3_4errp")
+text = "Shield : "
+
+[node name="LabelNumShield" type="Label" parent="ShieldLabel"]
+layout_mode = 0
+offset_left = 65.0
+offset_top = -1.0
+offset_right = 105.0
+offset_bottom = 22.0
+text = "0"
+
+[node name="TimerShield" type="Timer" parent="."]
+
+[connection signal="timeout" from="TimerPv" to="." method="_on_timer_pv_timeout"]
+[connection signal="timeout" from="TimerShield" to="." method="_on_timer_shield_timeout"]

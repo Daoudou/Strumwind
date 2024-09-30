@@ -11,6 +11,7 @@ var list_of_soldier = []
 @onready var timerRemain = $TimerRemain
 @onready var startPosition = $StartPosition
 @onready var mobSpawnLocation = $MobPath/MobSpawnLocation
+@onready var timerPv = $TimerPV
 
 var timer
 var level
@@ -29,8 +30,8 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	#pass
 	# Pour l'instant le simple fait de nous toucher provoque un game over
-	#if	(player.hitten):
-	#	game_over()
+	if	(player.getPv() <= 0):
+		game_over()
 	
 	if !list_of_soldier.is_empty():
 		for i in range(list_of_soldier.size()):
@@ -96,6 +97,8 @@ func game_over():
 	timerRemain.stop()
 	player.gameOver = true
 	hudLevels.show_game_over()
+	timerPv.stop()
+	hudLevels.pvTimer.hide()
 	giveUpButton.hide()
 	pauseButton.hide()
 	
@@ -110,6 +113,3 @@ func _on_GamePaused():
 		timerRemain.start()
 		hudLevels.show_message("")
 		is_paused = false
-
-func _on_timer_pv_timeout() -> void:
-	hudLevels.update_pv(player.pv)

@@ -6,6 +6,7 @@ extends Node2D
 @onready var hudLevels = $HudLevels
 @onready var timerRemain = $TimerRemain
 @onready var startPosition = $StartPosition
+@onready var timerPV = $TimerPv
 
 @onready var speeder = $Speeder
 @onready var speeder2 = $Speeder2
@@ -55,6 +56,7 @@ func _process(delta: float) -> void:
 				speeder3.shieldPV = 0
 				
 	if ((speeder and speeder2 and speeder3 and gardian) == null):
+		hudLevels.update_score(100)
 		victory()
 
 func start_level():
@@ -65,6 +67,7 @@ func start_level():
 	hudLevels.show_message("Get Ready")
 	player.start(startPosition.position)
 	timerRemain.start()
+	timerPV.start()
 	hudLevels.show_level(level)
 
 func _on_timer_remain_timeout() -> void:
@@ -96,3 +99,7 @@ func victory():
 	giveUpButton.hide()
 	pauseButton.hide()
 	hudLevels.show_victory("res://levels/level_4.tscn")
+
+
+func _on_timer_pv_timeout() -> void:
+	hudLevels.update_pv(player.pv)

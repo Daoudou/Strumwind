@@ -7,11 +7,15 @@ extends Node
 @onready var scoreOfScoreLabel = $ScoreLabel/Score
 @onready var LabelPV = $PV/PVNum
 @onready var timerNum = $Timer/TimeNum
+@onready var timerScore = $TimerScore
 @onready var levelOfLevels = $NumberLevels/Level
+
+var score
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass
+	score = 0
+	#$TimerScore.start()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -54,14 +58,20 @@ func update_timer(time):
 func update_pv(pv):
 	LabelPV.text = str(pv)
 	
-func update_score(score):
-	scoreOfScoreLabel.text = str(score)
+func update_score(scoreUpdate):
+	score += scoreUpdate
 	
 func show_level(level):
 	levelOfLevels.text = str(level)
+
+func show_score():
+	scoreOfScoreLabel.text = str(score)
 	
 func _on_level_select_button_pressed() -> void:
 	get_tree().change_scene_to_file("res://scenes//levels_select.tscn")
 
 func _on_message_timer_timeout() -> void:
 	message.hide()
+
+func _on_timer_score_timeout() -> void:
+	show_score()

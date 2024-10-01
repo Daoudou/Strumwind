@@ -13,6 +13,7 @@ var time_since_last_shot: float = 0.0
 @onready var timerRemain = $TimerRemain
 @onready var startPosition = $StartPosition
 @onready var healer = $Healer
+@onready var timerPv = $TimerPv
 
 var timer
 var level
@@ -44,12 +45,14 @@ func _process(delta: float) -> void:
 				soldierInstance.directionMissile = player.position
 	else :
 		if (healer == null):
+			hudLevels.update_score(25)
 			victory()
 
 	if !list_of_soldier.is_empty():
 		for i in range(list_of_soldier.size()):
 			var soldierRemove = list_of_soldier[i]
 			if soldierRemove == null:
+				hudLevels.update_score(5)
 				list_of_soldier.remove_at(i)
 				break
 	
@@ -62,6 +65,7 @@ func start_level():
 	hudLevels.show_message("Get Ready")
 	player.start(startPosition.position)
 	timerRemain.start()
+	timerPv.start()
 	hudLevels.show_level(level)
 
 	RigidBody2D_scene = preload("res://models/characters/soldier.tscn")
@@ -104,3 +108,6 @@ func victory():
 	giveUpButton.hide()
 	pauseButton.hide()
 	hudLevels.show_victory("res://levels/level_3.tscn")
+
+func _on_timer_pv_timeout() -> void:
+	hudLevels.update_pv(player.pv)

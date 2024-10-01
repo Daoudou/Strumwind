@@ -40,6 +40,8 @@ position = Vector2(389, 543)
 
 [node name="TimerRemain" type="Timer" parent="."]
 
+[node name="TimerPv" type="Timer" parent="."]
+
 [node name="MobPath" type="Path2D" parent="."]
 curve = SubResource("Curve2D_u3tph")
 
@@ -53,3 +55,4 @@ mass = 0.001
 gravity_scale = 0.0
 
 [connection signal="timeout" from="TimerRemain" to="." method="_on_timer_remain_timeout"]
+[connection signal="timeout" from="TimerPv" to="." method="_on_timer_pv_timeout"]

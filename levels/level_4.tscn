@@ -33,7 +33,10 @@ position = Vector2(389, 543)
 
 [node name="TimerRemain" type="Timer" parent="."]
 
+[node name="TimerPV" type="Timer" parent="."]
+
 [node name="Gardian" parent="." instance=ExtResource("6_pmid5")]
 position = Vector2(350, 100)
 
 [connection signal="timeout" from="TimerRemain" to="." method="_on_timer_remain_timeout"]
+[connection signal="timeout" from="TimerPV" to="." method="_on_timer_pv_timeout"]

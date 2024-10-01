@@ -42,6 +42,7 @@ func _process(delta: float) -> void:
 		boss.directionMissile = player.position
 	else :
 		if ((gardian == null) and (gardian2 == null)):
+			hudLevels.update_score(200)
 			victory()
 
 func start_level():
@@ -87,7 +88,6 @@ func victory():
 	giveUpButton.hide()
 	pauseButton.hide()
 	hudLevels.show_victory("res://scenes/levels_select.tscn")
-
 
 func _on_timer_pv_timeout() -> void:
 	hudLevels.update_pv(player.pv)

@@ -12,6 +12,7 @@ var list_of_soldier = []
 @onready var startPosition = $StartPosition
 @onready var mobSpawnLocation = $MobPath/MobSpawnLocation
 @onready var timerPv = $TimerPV
+@onready var timerScore = $TimerScore
 
 var timer
 var level
@@ -45,6 +46,7 @@ func _process(delta: float) -> void:
 		for i in range(list_of_soldier.size()):
 			var soldierRemove = list_of_soldier[i]
 			if soldierRemove == null:
+				hudLevels.update_score(5)
 				list_of_soldier.remove_at(i)
 				break
 				
@@ -58,6 +60,7 @@ func start_level():
 	player.start(startPosition.position)
 	timerRemain.start()
 	pvTimer.start()
+	timerScore.start()
 	hudLevels.show_level(level)
 	
 	RigidBody2D_scene = preload("res://models/characters/soldier.tscn")
@@ -113,3 +116,9 @@ func _on_GamePaused():
 		timerRemain.start()
 		hudLevels.show_message("")
 		is_paused = false
+
+func _on_timer_score_timeout() -> void:
+	hudLevels.show_score()
+	
+func _on_timer_pv_timeout() -> void:
+	hudLevels.update_pv(player.pv)

@@ -100,6 +100,8 @@ vertical_alignment = 1
 [node name="MessageTimer" type="Timer" parent="."]
 wait_time = 2.0
 
+[node name="TimerScore" type="Timer" parent="."]
+
 [node name="Timer" type="Label" parent="."]
 anchors_preset = 1
 anchor_left = 1.0
@@ -172,5 +174,6 @@ text = "0"
 
 [connection signal="timeout" from="MessageTimer" to="." method="_on_message_timer_timeout"]
 [connection signal="timeout" from="MessageTimer" to="." method="_on_timer_remain_timeout"]
+[connection signal="timeout" from="TimerScore" to="." method="_on_timer_score_timeout"]
 [connection signal="pressed" from="GiveUpButton" to="." method="_on_give_up_button_pressed"]
 [connection signal="pressed" from="LevelSelectButton" to="." method="_on_level_select_button_pressed"]

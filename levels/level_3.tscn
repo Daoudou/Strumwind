@@ -38,6 +38,8 @@ position = Vector2(389, 543)
 
 [node name="TimerRemain" type="Timer" parent="."]
 
+[node name="TimerPv" type="Timer" parent="."]
+
 [node name="Speeder" parent="." instance=ExtResource("6_4a1up")]
 position = Vector2(150, 250)
 rotation = 3.14159
@@ -54,3 +56,4 @@ rotation = 3.14159
 position = Vector2(350, 60)
 
 [connection signal="timeout" from="TimerRemain" to="." method="_on_timer_remain_timeout"]
+[connection signal="timeout" from="TimerPv" to="." method="_on_timer_pv_timeout"]

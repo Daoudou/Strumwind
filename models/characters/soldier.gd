@@ -64,7 +64,7 @@ func fire_missile():
 		missile.rotation = missile.direction.angle()
 		missile.set_degat(10)
 		
-		#add_child(missile)
+		add_child(missile)
 		
 func take_damage(damage):
 	if (shieldPV <= 0):
